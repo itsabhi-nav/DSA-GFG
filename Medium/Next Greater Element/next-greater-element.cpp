@@ -12,24 +12,24 @@ class Solution
         stack<long long> st;
         vector<long long> v1;
 
+        
         for (int i = n - 1; i >= 0; i--) {
-            // Pop elements from the stack until the top is greater than arr[i]
+            
             while (!st.empty() && st.top() <= arr[i]) {
                 st.pop();
             }
 
-            // If stack is empty, no greater element found
             if (st.empty()) {
                 v1.push_back(-1);
             } else {
                 v1.push_back(st.top());
             }
 
-           
+
             st.push(arr[i]);
         }
 
-        // Reverse the result vector to get the final answer
+        
         reverse(v1.begin(), v1.end());
         return v1;
     }
