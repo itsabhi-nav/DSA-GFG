@@ -100,7 +100,8 @@ struct Node
 class Solution{
   public:
     /*You are required to complete below method */
-   int countLeaf(Node* root, vector<int> &ans, int k){
+    
+      int countLeaf(Node* root, vector<int> &ans, int k){
         if(root == NULL){
             return 0;
         }
@@ -132,7 +133,6 @@ class Solution{
         
         return ans;
     }
-
 
 
 };
