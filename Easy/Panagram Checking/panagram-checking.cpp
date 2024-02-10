@@ -12,18 +12,20 @@ class Solution
 {
   public:
     //Function to check if a string is Pangram or not.
-    bool checkPangram (string s) {
+    bool checkPangram (string S) {
         // your code here
-        unordered_set<char>st;
-        for(auto itr:s)
-        {
-            if((itr >= 'a' && itr <= 'z')|| (itr >= 'A' && itr <='Z'))
-            {
-                st.insert(tolower(itr));
-            }
+          unordered_map<char,int>mp;
+        
+        for(int i =0; i<S.size(); i++){
+            char c = tolower(S[i]);
+            mp[c]++;
         }
-        if(st.size()==26) return true;
-        return false;
+        
+        for(char i= 'a'; i<='z'; i++){
+            if(mp[i]==0)
+                return 0;
+        }
+        return 1;
     }
 
 };
