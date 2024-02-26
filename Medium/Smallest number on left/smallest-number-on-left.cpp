@@ -11,25 +11,17 @@ class Solution{
 public:
     vector<int> leftSmaller(int n, int a[]){
         // code here
-        stack<int>s;
-        vector<int>v;
+        vector<int>ans(n,-1);
+        stack<int>st;
         
-        for(int i =0;i<n;i++){
-            
-            while(!s.empty() && s.top() >= a[i]){
-                s.pop();
+        for(int i =n-1; i>=0; i--){
+            while(!st.empty() && a[st.top()]>a[i]){
+                ans[st.top()]=a[i];
+                st.pop();
             }
-            
-            if(s.empty()){
-                v.push_back(-1);
-            }
-            
-            else {
-                v.push_back(s.top());
-            }
-            s.push(a[i]);
+            st.push(i);
         }
-        return v;
+        return ans;
     }
 };
 
