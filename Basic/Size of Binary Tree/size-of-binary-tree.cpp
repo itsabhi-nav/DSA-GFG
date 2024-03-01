@@ -1,118 +1,144 @@
 //{ Driver Code Starts
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
+
 
 struct Node
 {
     int data;
     struct Node *left;
     struct Node *right;
+
+    Node(int val) {
+        data = val;
+        left = right = NULL;
+    }
 };
-Node* newNode(int val)
-{
-    Node* temp = new Node;
-    temp->data = val;
-    temp->left = NULL;
-    temp->right = NULL;
-    
-    return temp;
-}
+
+// Function to Build Tree
 Node* buildTree(string str)
-{   
+{
     // Corner Case
     if(str.length() == 0 || str[0] == 'N')
             return NULL;
-    
-    // Creating vector of strings from input 
+
+    // Creating vector of strings from input
     // string after spliting by space
     vector<string> ip;
-    
+
     istringstream iss(str);
     for(string str; iss >> str; )
         ip.push_back(str);
-        
+
     // Create the root of the tree
-    Node* root = newNode(stoi(ip[0]));
-        
+    Node *root = new Node(stoi(ip[0]));
+
     // Push the root to the queue
     queue<Node*> queue;
     queue.push(root);
-        
+
     // Starting from the second element
     int i = 1;
     while(!queue.empty() && i < ip.size()) {
-            
+
         // Get and remove the front of the queue
         Node* currNode = queue.front();
         queue.pop();
-            
+
         // Get the current node's value from the string
         string currVal = ip[i];
-            
+
         // If the left child is not null
         if(currVal != "N") {
-                
-            // Create the left child for the current node
-            currNode->left = newNode(stoi(currVal));
-                
+
+            // Create the left child for the current Node
+            currNode->left = new Node(stoi(currVal));
+
             // Push it to the queue
             queue.push(currNode->left);
         }
-            
+
         // For the right child
         i++;
         if(i >= ip.size())
             break;
         currVal = ip[i];
-            
+
         // If the right child is not null
         if(currVal != "N") {
-                
+
             // Create the right child for the current node
-            currNode->right = newNode(stoi(currVal));
-                
+            currNode->right = new Node(stoi(currVal));
+
             // Push it to the queue
             queue.push(currNode->right);
         }
         i++;
     }
-    
+
     return root;
 }
-int getSize(struct Node* node);
 
-int main()
+Node* inputTree(){
+    string treeString;
+    getline(cin,treeString);
+    Node* root = buildTree(treeString);
+    return root;
+}
+void inorder(Node *root)
 {
-    int t;
-	scanf("%d ",&t);
-    while(t--)
-    {
-        string s;
-		getline(cin,s);
-		Node* root = buildTree(s);
-		cout<<getSize(root)<<endl;
+    if (root == NULL)
+       return;
+    inorder(root->left);
+    cout << root->data << " ";
+    inorder(root->right);
+}
+
+
+// } Driver Code Ends
+/*
+
+Definition for Binary Tree Node
+struct Node
+{
+    int data;
+    struct Node* left;
+    struct Node* right;
+
+    Node(int x){
+        data = x;
+        left = right = NULL;
     }
-    return 0;
+};
+*/
+
+class Solution {
+  public:
+    int getSize(Node* root) {
+        // code here
+        if(!root)
+        return 0;
+        
+        return 1+getSize(root->left)+getSize(root->right);
+    }
+};
+
+
+//{ Driver Code Starts.
+
+int main(){
+    int t;
+    scanf("%d ",&t);
+    while(t--){
+        
+        Node* node = inputTree();
+        
+        Solution obj;
+        int res = obj.getSize(node);
+        
+        cout<<res<<endl;
+        
+    }
 }
 
 // } Driver Code Ends
-
-
-/* Tree node structure  used in the program
- struct Node
- {
-     int data;
-     Node* left;
-     Node* right;
-}; */
-
-/* Computes the number of nodes in a tree. */
-int getSize(Node* node)
-{
-   // Your code here
-   if(!node){
-       return 0;
-   }
-   
-   return (getSize(node->left)+getSize(node->right))+1;
-}
