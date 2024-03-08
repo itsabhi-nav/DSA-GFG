@@ -10,14 +10,17 @@ using namespace std;
 
 class Solution {
   public:
-   int binarysearch(int arr[], int n, int k) {
-        for (int i = 0; i < n; i++) {
-            if (arr[i] == k) {
-                return i; // Return the index where 'k' is found in the array
-            }
+    int binarysearch(int arr[], int n, int k) {
+        // code here
+           int index=0;
+        for(int i=0;i<n;i++)
+        {
+            if(arr[i]==k)
+                index=i;
         }
-        
-        return -1; // 'k' was not found in the array, so return -1
+        if(index==0)
+            index=-1;
+        return index;
     }
 };
 
