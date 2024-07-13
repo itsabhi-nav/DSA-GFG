@@ -7,25 +7,31 @@ using namespace std;
 class Solution {
   public:
   
-int minimumEnergyHelper(vector<int>& height, int n, vector<int>& dp) {
-    if (n == 0) return 0; // Base case: no energy needed to stay at the first stone
     
-    if (dp[n] != -1) return dp[n]; // If already calculated, return the stored value
+   int step(vector<int>& height, int n, vector<int>& dp) {
+    if (n == 1)
+        return 0;
+
+    if (dp[n] != -1)
+        return dp[n];
     
-    int jumpOneStep = minimumEnergyHelper(height, n - 1, dp) + abs(height[n] - height[n - 1]);
-    int jumpTwoSteps = INT_MAX;
-    if (n > 1) {
-        jumpTwoSteps = minimumEnergyHelper(height, n - 2, dp) + abs(height[n] - height[n - 2]);
+    int first = step(height, n - 1, dp) + abs(height[n - 1] - height[n - 2]);
+    int second = INT_MAX;
+    
+    if (n > 2) {
+        second = step(height, n - 2, dp) + abs(height[n - 1] - height[n - 3]);
     }
     
-    dp[n] = min(jumpOneStep, jumpTwoSteps); // Store the result for future reference
+    dp[n] = min(first, second);
     return dp[n];
 }
 
 int minimumEnergy(vector<int>& height, int n) {
-    vector<int> dp(n, -1); // Initialize dp array with -1
-    return minimumEnergyHelper(height, n - 1, dp);
+    vector<int> dp(n + 1, -1);
+    int ans = step(height, n, dp);
+    return ans;
 }
+    
 };
 
 //{ Driver Code Starts.
