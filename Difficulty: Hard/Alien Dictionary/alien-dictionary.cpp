@@ -7,9 +7,9 @@ using namespace std;
 // } Driver Code Ends
 // User function Template for C++
 
-class Solution{
-    public:
-   void topo(vector<int>adj[], stack<int>&st, vector<int>&vis, int src){
+class Solution {
+  public:
+     void topo(vector<int>adj[], stack<int>&st, vector<int>&vis, int src){
         vis[src] = 1;
         
         for(auto it: adj[src]){
@@ -60,6 +60,7 @@ class Solution{
 
 //{ Driver Code Starts.
 string order;
+
 bool f(string a, string b) {
     int p1 = 0;
     int p2 = 0;
@@ -69,7 +70,8 @@ bool f(string a, string b) {
         //	cout<<p1<<" "<<p2<<endl;
     }
 
-    if (p1 == p2 and a.size() != b.size()) return a.size() < b.size();
+    if (p1 == p2 and a.size() != b.size())
+        return a.size() < b.size();
 
     return p1 < p2;
 }
@@ -82,12 +84,14 @@ int main() {
         int N, K;
         cin >> N >> K;
         string dict[N];
-        for (int i = 0; i < N; i++) cin >> dict[i];
-        
+        for (int i = 0; i < N; i++)
+            cin >> dict[i];
+
         Solution obj;
         string ans = obj.findOrder(dict, N, K);
         order = "";
-        for (int i = 0; i < ans.size(); i++) order += ans[i];
+        for (int i = 0; i < ans.size(); i++)
+            order += ans[i];
 
         string temp[N];
         std::copy(dict, dict + N, temp);
@@ -95,10 +99,13 @@ int main() {
 
         bool f = true;
         for (int i = 0; i < N; i++)
-            if (dict[i] != temp[i]) f = false;
+            if (dict[i] != temp[i])
+                f = false;
 
-        if(f)cout << 1;
-        else cout << 0;
+        if (f)
+            cout << 1;
+        else
+            cout << 0;
         cout << endl;
     }
     return 0;
