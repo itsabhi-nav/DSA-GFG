@@ -11,21 +11,10 @@ using namespace std;
 class Solution {
   public:
     int remove_duplicate(vector<int> &arr) {
-        // code here
-         int n = arr.size();
-        if (n == 0) return 0;
-
-        int index = 0;  // This will track the position of unique elements
-
-        for (int i = 1; i < n; i++) {
-            if (arr[i] != arr[index]) {
-                index++;
-                arr[index] = arr[i];
-            }
-        }
-
-        // The array is now modified, and the first `index + 1` elements are unique.
-        return index + 1;
+       
+        set<int> st1(arr.begin(), arr.end());
+    arr.assign(st1.begin(), st1.end());
+    return arr.size();
     }
 };
 
