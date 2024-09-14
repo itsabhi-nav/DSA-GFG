@@ -10,8 +10,8 @@ class Solution {
   public:
 
     void rearrange(vector<int> &arr) {
-      
-    vector<int> pos, neg;
+        // code here
+        vector<int> pos, neg;
     int n = arr.size();
 
     for(int i = 0; i < n; i++) {
@@ -40,6 +40,7 @@ class Solution {
         arr[idx++] = neg[idxNeg++];
     }
     }
+    
 };
 
 //{ Driver Code Starts.
@@ -48,10 +49,6 @@ int main() {
     int t;
     cin >> t;
     cin.ignore();
-    if (t == 1) {
-        cout << -1 << endl;
-        return 0;
-    }
     while (t--) {
         vector<int> arr;
         string input;
