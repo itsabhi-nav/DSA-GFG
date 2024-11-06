@@ -6,27 +6,21 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
   public:
-    
-    void solve(vector<int> &arr, int i, int n, vector<int> &ans, int sum){
-        if(i>=n){
-        ans.push_back(sum);
-        return;
-        }
-        //yes
-        
-        solve(arr, i+1, n,ans, sum+arr[i] );
-        
-        
-        // No
-        
-        solve(arr, i+1, n,ans, sum);
-    }
-   
     vector<int> subsetSums(vector<int> arr, int n) {
         // Write Your Code here
-        vector<int>ans;
-        solve(arr,0,n,ans,0);
+        vector<int> ans;
+        
+        sumset(arr,0,n, 0, ans);
         return ans;
+    }
+    
+    void sumset(vector<int> &arr, int i , int n, int sum, vector<int> &ans){
+        if( i ==n){
+            return ans.push_back(sum);
+        }
+        
+        sumset(arr, i+1,n,sum+arr[i], ans);
+        sumset(arr, i+1,n,sum, ans);
     }
 };
 
@@ -48,7 +42,9 @@ int main() {
             cout << sum << " ";
         }
         cout << endl;
-    }
+    
+cout << "~" << "\n";
+}
     return 0;
 }
 // } Driver Code Ends
