@@ -1,55 +1,63 @@
 //{ Driver Code Starts
 #include <bits/stdc++.h>
+
 using namespace std;
 
 
 // } Driver Code Ends
-class Solution{
+class Solution {
   public:
-    // arr[] : the input array
-    // N : size of the array arr[]
-    
-    //Function to return length of longest subsequence of consecutive integers.
-    int findLongestConseqSubseq(int arr[], int n)
-    {
-      //Your code here
-      int count=1;
-      int longest =1;
-      
-      sort(arr, arr+n);
-      
-      for(int i =1; i<n; i++){
-            if(arr[i]!=arr[i-1]){
-                if(arr[i]==arr[i-1]+1){
-                    count++;
-                }
-                else{
-                    longest = max(longest, count);
-                    count =1;
-                }
+
+    // Function to return length of longest subsequence of consecutive integers.
+    int findLongestConseqSubseq(vector<int>& arr) {
+        // Your code here
+        unordered_set<int>s(arr.begin(), arr.end());
+        
+        int longest =0;
+        
+        for(int i =0; i<arr.size(); i++){
+            int num = arr[i];
+            
+            if(s.find(num-1) == s.end()){
+                int currentNum =num;
+                int currentStreak =1;
+            
+            
+            while(s.find(currentNum+1)!= s.end()){
+                currentNum++;
+                currentStreak++;
             }
-      }
-      
-      return max(longest, count);
+            
+            longest = max(longest, currentStreak);
+            }
+        }
+        return longest;
     }
 };
 
 //{ Driver Code Starts.
- 
-// Driver program
-int main()
-{
- int  t,n,i,a[100001];
- cin>>t;
- while(t--)
- {
-  cin>>n;
-  for(i=0;i<n;i++)
-  cin>>a[i];
-  Solution obj;
-  cout<<obj.findLongestConseqSubseq(a, n)<<endl;
- }
-      
+int main() {
+    int t;
+    cin >> t;
+    cin.ignore();
+    while (t--) {
+        vector<int> arr;
+        string input;
+
+        // Read first array
+        getline(cin, input);
+        stringstream ss(input);
+        int number;
+        while (ss >> number) {
+            arr.push_back(number);
+        }
+
+        Solution ob;
+        int res = ob.findLongestConseqSubseq(arr);
+
+        cout << res << endl << "~" << endl;
+    }
     return 0;
 }
+
 // } Driver Code Ends
