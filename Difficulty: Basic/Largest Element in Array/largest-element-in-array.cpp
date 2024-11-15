@@ -14,9 +14,13 @@ class Solution {
   public:
     int largest(vector<int> &arr) {
         // code here
-        int n = arr.size();
-        sort(arr.begin(), arr.end());
-        return arr[n-1];
+        int largest =-1;
+        for(int i =0; i< arr.size(); i++){
+            if(arr[i]>largest){
+                largest = arr[i];
+            }
+        }
+        return largest;
     }
 };
 
@@ -42,6 +46,7 @@ int main() {
 
         Solution ob;
         cout << ob.largest(arr) << endl;
+        cout << "~" << endl;
     }
     return 0;
 }
