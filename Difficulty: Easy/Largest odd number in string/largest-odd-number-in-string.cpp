@@ -5,14 +5,13 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
   public:
-    string maxOdd(string S) {
+    string maxOdd(string s) {
         // your code here
-            for(int i=S.size(); i>=0; i--) {
-            if((S[i] - '0') %2 == 1) {
-                return S.substr(0, i+1);
+        for(int i= s.size() ; i>=0; i--){
+            if((s[i]-'0')%2==1){
+                return s.substr(0,i+1);
             }
         }
-        
         return "";
     }
 };
@@ -28,7 +27,9 @@ int main() {
         Solution ob;
 
         cout << ob.maxOdd(s) << endl;
-    }
+    
+cout << "~" << "\n";
+}
 }
 
 // } Driver Code Ends
