@@ -7,24 +7,24 @@ class Solution {
   public:
     string removeOuter(string& s) {
         // code here
-        string result ="";
-        int balance =0;
-        
-        for(int i =0; i<s.length();i++){
-            if(s[i] =='('){
-                if(balance>0){
-                    result += s[i];
-                }
-                balance++;
-            }
-            else{
-                balance--;
-                if(balance>0){
-                    result+=s[i];
-                }
-            }
-        }
-        return result;
+       string result ="";
+       int balance =0;
+       
+       for(int i =0;i,i<s.length(); i++){
+           if(s[i]=='('){
+               if(balance>0){
+                   result+=s[i];
+               }
+               balance++;
+           }
+           else{
+               balance--;
+               if(balance>0){
+                   result+=s[i];
+               }
+           }
+       }
+       return result;
     }
 };
 
