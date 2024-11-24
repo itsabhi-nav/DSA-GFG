@@ -47,8 +47,8 @@ class Solution {
         Node *fast = head;
         
         while(fast && fast->next){
-            fast=fast->next->next;
             slow = slow->next;
+            fast = fast->next->next;
         }
         return slow->data;
     }
@@ -89,6 +89,7 @@ int main() {
 
         Solution ob;
         cout << ob.getMiddle(head) << endl;
+        cout << "~" << endl;
     }
 
     return 0;
