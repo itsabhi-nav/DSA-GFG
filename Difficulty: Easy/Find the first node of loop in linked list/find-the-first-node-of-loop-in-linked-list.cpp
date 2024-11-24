@@ -50,7 +50,7 @@ class Solution {
     int findFirstNode(Node* head) {
         // your code here
         if(!head || !head->next )
-        return 1;
+        return -1;
         
         Node* slow = head;
         Node* fast = head;
@@ -65,7 +65,10 @@ class Solution {
                 break;
             }
         }
-        if (!fast || !fast->next) return -1;
+        
+        if (slow != fast)
+        return -1;
+       
         
         slow = head;
         
